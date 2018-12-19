@@ -90,9 +90,11 @@ public class Fichero {
         try {
             lectura = new FileWriter(archivo);
             documento = new PrintWriter(lectura);
-          
-                documento.println(listaEspecies);
-            
+            for (int i = 0; i < listaEspecies.size(); i++) {
+                String especie = listaEspecies.get(i).toString();
+                documento.println(especie);                          //recogemos cada paragrafo del texto(ALumno) y lo escribimos en el File
+            }
+
         } catch (IOException e) {
             System.out.println("No se pudo escribir en el archivo");
         } finally {

@@ -26,7 +26,7 @@ import java.util.ArrayList;
  */
 public class Manager {
 
-    static ArrayList<Especie> listaTODOS;
+    static ArrayList<Especie> listaTODOS = new ArrayList<>();
     static Especie especie = new Especie("", "", "");
     static boolean datoBooleando = false;
     
@@ -127,7 +127,6 @@ public class Manager {
     }
 
     public static ArrayList<Especie> obtenerListadeTODOS() {
-
         listaTODOS.addAll(Andoria.getListaCensados());
         listaTODOS.addAll(Nibiru.getListaCensados());
         listaTODOS.addAll(Vulcano.getListaCensados());
