@@ -15,6 +15,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -59,11 +61,11 @@ public class Fichero {
             fr = new FileReader(archivo);
             br = new BufferedReader(fr);
             String linea = "";
-
+            Manager.crearPlanetas();
             while ((linea = br.readLine()) != null) {
                 String frase = linea.substring(0);
                 try {
-                    Manager.crearPlanetas();
+
                     Manager.RealizarAccionconFrase(frase);
                 } catch (ExcepcionPlanetas ex) {
                     System.out.println(ex.getMessage());
@@ -71,6 +73,8 @@ public class Fichero {
             }
         } catch (IOException e) {
             System.out.println("No existe el fichero.");
+        } catch (ExcepcionPlanetas ex) {
+            System.out.println("Fichero mal creado");
         } finally {
             try {
                 if (fr != null) {

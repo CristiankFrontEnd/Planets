@@ -29,7 +29,7 @@ public class Manager {
     static ArrayList<Especie> listaTODOS = new ArrayList<>();
     static Especie especie = new Especie("", "", "");
     static boolean datoBooleando = false;
-    
+
     static Planeta Kronos;
     static Planeta Nibiru;
     static Planeta Andoria;
@@ -90,22 +90,22 @@ public class Manager {
 
                 break;
             case "Andoria":
-                if (datos_separados[4].equalsIgnoreCase("aenar") || datos_separados[4].equalsIgnoreCase("vegetarian")) {
+                if (datos_separados[4].equalsIgnoreCase("aenar")) {
                     datoBooleando = true;
                 }
                 especie = new Andoriano(datos_separados[2], datos_separados[3], datos_separados[1], datoBooleando);
-
+                datoBooleando = false;
                 break;
             case "Klingon":
                 especie = new Klingon(datos_separados[2], datos_separados[3], datos_separados[1], Integer.parseInt(datos_separados[4]));
 
                 break;
             case "Nibiriano":
-                if (datos_separados[4].equalsIgnoreCase("aenar") || datos_separados[4].equalsIgnoreCase("vegetarian")) {
+                if (datos_separados[4].equalsIgnoreCase("vegetarian")) {
                     datoBooleando = true;
                 }
                 especie = new Nibiriano(datos_separados[2], datos_separados[3], datos_separados[1], datoBooleando);
-
+                datoBooleando = false;
                 break;
             case "Vulcaniano":
                 especie = new Vulcaniano(datos_separados[2], datos_separados[3], datos_separados[1], Integer.parseInt(datos_separados[4]));
@@ -115,17 +115,8 @@ public class Manager {
         return especie;
     }
 
-    public static Especie obtenerEspeciePorNombre(String nombre) throws ExcepcionPlanetas {
-
-        listaTODOS = obtenerListadeTODOS();
-        for (Especie especie : listaTODOS) {
-            if (especie.getNombre().equalsIgnoreCase(nombre)) {
-                return especie;
-            }
-        }
-        return null;
-    }
-
+ 
+    
     public static ArrayList<Especie> obtenerListadeTODOS() {
         listaTODOS.addAll(Andoria.getListaCensados());
         listaTODOS.addAll(Nibiru.getListaCensados());
@@ -179,6 +170,16 @@ public class Manager {
         }
     }
 
+       public static Especie obtenerEspeciePorNombre(String nombre) throws ExcepcionPlanetas {
+
+        listaTODOS = obtenerListadeTODOS();
+        for (Especie especie : listaTODOS) {
+            if (especie.getNombre().equalsIgnoreCase(nombre)) {
+                return especie;
+            }
+        }
+        return null;
+    }
     public static boolean esModificable(String tipo) {
         if (tipo.equalsIgnoreCase("Humano") || tipo.equalsIgnoreCase("Vulcaniano") || tipo.equalsIgnoreCase("Klingon")) {
             return true;

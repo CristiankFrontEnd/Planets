@@ -1,4 +1,6 @@
 C Humano Andoria JOSE 30
 C Humano Andoria MANUEL 12
 C Nibiriano Vulcano ARTURO vegetarian
-C Nibiriano Nibiru ALEX vegetarian
+C Nibiriano Nibiru ALEX vegetariano
+C Nibiriano Nibiru PEPE vegetarian
+C Nibiriano Nibiru PEPE vegetariantyty
