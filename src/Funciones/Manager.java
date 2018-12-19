@@ -19,6 +19,7 @@ import Galaxia.Nibiru;
 import Galaxia.Planeta;
 import Galaxia.Vulcano;
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  *
@@ -28,7 +29,7 @@ public class Manager {
 
     static ArrayList<Especie> listaTODOS = new ArrayList<>();
     static Especie especie = new Especie("", "", "");
-    static boolean datoBooleando = false;
+    static String datoBooleando = "";
 
     static Planeta Kronos;
     static Planeta Nibiru;
@@ -64,14 +65,26 @@ public class Manager {
                     borrarEspecie(especieAborrar);
                     System.out.println("<OK: Ser borrado correctamente >");
                 } else {
-                    throw new ExcepcionPlanetas(6);
-
+                    throw new ExcepcionPlanetas(7);
+                }
+                break;
+            case 'L':
+                mostrarEspeciesporPlanetas();
+                break;
+            case 'M':
+                Especie especieAmodificar = obtenerEspeciePorNombre(datos_separados[1]);
+                if (especieAmodificar != null) {
+                    if (esModificable(especieAmodificar.getTipo())) {
+                        modificarEspecie(especieAmodificar);
+                        System.out.println("<OK: Ser modificado correctamente >");
+                    } else {
+                        throw new ExcepcionPlanetas(8);
+                    }
+                } else {
+                    throw new ExcepcionPlanetas(7);
                 }
                 break;
 
-            case 'M':
-
-                break;
             case 'P':
 
                 break;
@@ -89,12 +102,14 @@ public class Manager {
                 especie = new Humano(datos_separados[2], datos_separados[3], datos_separados[1], Integer.parseInt(datos_separados[4]));
 
                 break;
-            case "Andoria":
+            case "Andoriano":
                 if (datos_separados[4].equalsIgnoreCase("aenar")) {
-                    datoBooleando = true;
+                    datoBooleando = "aenar";
+                } else {
+                    datoBooleando = "noaenar";
                 }
                 especie = new Andoriano(datos_separados[2], datos_separados[3], datos_separados[1], datoBooleando);
-                datoBooleando = false;
+                datoBooleando = "";
                 break;
             case "Klingon":
                 especie = new Klingon(datos_separados[2], datos_separados[3], datos_separados[1], Integer.parseInt(datos_separados[4]));
@@ -102,10 +117,12 @@ public class Manager {
                 break;
             case "Nibiriano":
                 if (datos_separados[4].equalsIgnoreCase("vegetarian")) {
-                    datoBooleando = true;
+                    datoBooleando = "vegetarian";
+                } else {
+                    datoBooleando = "novegetarian";
                 }
                 especie = new Nibiriano(datos_separados[2], datos_separados[3], datos_separados[1], datoBooleando);
-                datoBooleando = false;
+                datoBooleando = "";
                 break;
             case "Vulcaniano":
                 especie = new Vulcaniano(datos_separados[2], datos_separados[3], datos_separados[1], Integer.parseInt(datos_separados[4]));
@@ -115,9 +132,8 @@ public class Manager {
         return especie;
     }
 
- 
-    
     public static ArrayList<Especie> obtenerListadeTODOS() {
+        listaTODOS.clear();
         listaTODOS.addAll(Andoria.getListaCensados());
         listaTODOS.addAll(Nibiru.getListaCensados());
         listaTODOS.addAll(Vulcano.getListaCensados());
@@ -161,16 +177,35 @@ public class Manager {
     }
 
     public static void borrarEspecie(Especie especie) {
+        switch (especie.getNombreplaneta()) {
+            case "Kronos":
 
-        listaTODOS = obtenerListadeTODOS();
-        for (Especie e : listaTODOS) {
-            if (e.getNombre().equalsIgnoreCase(especie.getNombre())) {
-                listaTODOS.remove(e);
-            }
+                Kronos.getListaCensados().remove(especie);
+                Fichero.escribirFichero("Kronos", Kronos.getListaCensados());
+                break;
+
+            case "Vulcano":
+
+                Vulcano.getListaCensados().remove(especie);
+                Fichero.escribirFichero("Vulcano", Vulcano.getListaCensados());
+                break;
+
+            case "Nibiru":
+
+                Nibiru.getListaCensados().remove(especie);
+                Fichero.escribirFichero("Nibiru", Nibiru.getListaCensados());
+                break;
+
+            case "Andoria":
+
+                Andoria.getListaCensados().remove(especie);
+                Fichero.escribirFichero("Andoria", Andoria.getListaCensados());
+                break;
+
         }
     }
 
-       public static Especie obtenerEspeciePorNombre(String nombre) throws ExcepcionPlanetas {
+    public static Especie obtenerEspeciePorNombre(String nombre) {
 
         listaTODOS = obtenerListadeTODOS();
         for (Especie especie : listaTODOS) {
@@ -180,10 +215,67 @@ public class Manager {
         }
         return null;
     }
+
+    public static void mostrarEspeciesporPlanetas() {
+        System.out.println("    *POPULATION BY PLANET*");
+
+        System.out.println("***********Vulcano************");
+        Collections.sort(Vulcano.getListaCensados());
+        imprimirListaOrdenada(Vulcano.getListaCensados());
+        System.out.println("****************************");
+
+        System.out.println("***********Andoria************");
+        Collections.sort(Andoria.getListaCensados());
+        imprimirListaOrdenada(Andoria.getListaCensados());
+        System.out.println("****************************");
+
+        System.out.println("***********Nibiru************");
+        Collections.sort(Nibiru.getListaCensados());
+        imprimirListaOrdenada(Nibiru.getListaCensados());
+        System.out.println("****************************");
+
+        System.out.println("***********Kronos************");
+        Collections.sort(Kronos.getListaCensados());
+        imprimirListaOrdenada(Kronos.getListaCensados());
+        System.out.println("****************************");
+    }
+
+    public static void imprimirListaOrdenada(ArrayList lista) {
+        for (int i = 0; i < lista.size(); i++) {
+            String especimen = lista.get(i).toString();
+            System.out.println(especimen);
+        }
+    }
+
     public static boolean esModificable(String tipo) {
         if (tipo.equalsIgnoreCase("Humano") || tipo.equalsIgnoreCase("Vulcaniano") || tipo.equalsIgnoreCase("Klingon")) {
             return true;
         }
         return false;
+    }
+
+    public static void modificarEspecie(Especie especie, int valor) throws ExcepcionPlanetas {
+       
+//ESTAS MODIFICANDO LA ESPECIE QUE SOLO PUEDE SER DE 3 TIPOS
+//Y ADEMÁS DEBES GRABARLA DESPUÉS
+//CUIDADO CON EL STATIC
+       
+        switch (especie.getTipo()) {
+            case "Humano":
+                for (Especie especie :  Vulcano.getListaCensados()) {
+                    
+                }
+                humano.setEdad(valor);
+                break;
+            case "Vulcano":
+                vulcaniano.setMeditacion(valor);
+     Fichero.escribirFichero("Vulcano", Vulcano.getListaCensados());
+
+                break;
+            case "Kronos":
+                klingon.setFuerza(valor);
+                break;
+
+        }
     }
 }

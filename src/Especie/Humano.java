@@ -36,7 +36,7 @@ public class Humano extends Especie {
 
     @Override
     public String toString() {
-        return getNombreplaneta() + " " + getNombre() + " " + getTipo() + " " + edad;
+        return  getTipo()  + " " + getNombre() + " " + edad;
     }
 
 }

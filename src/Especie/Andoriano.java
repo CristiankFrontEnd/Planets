@@ -11,24 +11,24 @@ package Especie;
  */
 public class Andoriano extends Especie {
 //ATRIBUTOS
-    private boolean aenar;
+    private String aenar;
 
 //CONSTRUCTOR
-    public Andoriano(String nombreplaneta, String nombre, String tipo, boolean aenar) {
+    public Andoriano(String nombreplaneta, String nombre, String tipo, String aenar) {
         super(nombreplaneta, nombre, tipo);
         this.aenar = aenar;
     }
  //GETTERS Y SETTERS
-    public boolean isAenar() {
+    public String isAenar() {
         return aenar;
     }
 
-    public void setAenar(boolean aenar) {
+    public void setAenar(String aenar) {
         this.aenar = aenar;
     }
 
     @Override
     public String toString() {
-        return getNombreplaneta() + " " + getNombre() + " " + getTipo() + " " + aenar;
+        return getTipo()  + " " +getNombre()  + " " + aenar;
     }
 }

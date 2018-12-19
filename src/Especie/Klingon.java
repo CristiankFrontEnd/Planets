@@ -36,6 +36,6 @@ public class Klingon extends Especie {
     
      @Override
     public String toString() {
-        return getNombreplaneta() + " " + getNombre() + " " + getTipo() + " " + fuerza;
+        return   getTipo()  + " " +getNombre()+ " " + fuerza;
     }
 }

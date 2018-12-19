@@ -11,7 +11,7 @@ import java.util.Objects;
  *
  * @author CRISTIAN
  */
-public class Especie {
+public class Especie implements Comparable<Especie>{
 
 //ATRIBUTOS
     private String nombreplaneta;
@@ -93,6 +93,11 @@ public class Especie {
             return false;
         }
         return true;
+    }
+
+    @Override
+    public int compareTo(Especie especie) {
+        return tipo.compareToIgnoreCase((especie.getTipo()));
     }
 
 }

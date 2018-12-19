@@ -12,22 +12,22 @@ package Especie;
 public class Nibiriano extends Especie{
     
     
-    private boolean vegetariano;
+    private String vegetariano;
     
-    public Nibiriano(String nombreplaneta, String nombre, String tipo, boolean vegetariano) {
+    public Nibiriano(String nombreplaneta, String nombre, String tipo, String vegetariano) {
         super(nombreplaneta, nombre, tipo);
         this.vegetariano=vegetariano;
     }
 
-    public boolean isVegetariano() {
+    public String isVegetariano() {
         return vegetariano;
     }
 
-    public void setVegetariano(boolean vegetariano) {
+    public void setVegetariano(String vegetariano) {
         this.vegetariano = vegetariano;
     }
       @Override
     public String toString() {
-        return getNombreplaneta() + " " + getNombre() + " " + getTipo() + " " + vegetariano;
+        return  getTipo()  + " " + getNombre() + " " + vegetariano;
     }
 }

@@ -36,6 +36,6 @@ public class Vulcaniano extends Especie {
 
     @Override
     public String toString() {
-        return getNombreplaneta() + " " + getNombre() + " " + getTipo() + " " + meditacion;
+        return getTipo() + " " + getNombre()  + " " + meditacion;
     }
 }
