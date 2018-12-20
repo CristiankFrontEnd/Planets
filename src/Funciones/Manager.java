@@ -27,6 +27,8 @@ import java.util.Collections;
  */
 public class Manager {
 
+    static String yellow = "\033[33m";
+    static String reset = "\u001B[0m";
     static ArrayList<Especie> listaTODOS = new ArrayList<>();
     static Especie especie = new Especie("", "", "");
     static String datoBooleando = "";
@@ -73,13 +75,12 @@ public class Manager {
                 break;
             case 'M':
                 Especie especieAmodificar = obtenerEspeciePorNombre(datos_separados[1]);
+
                 if (especieAmodificar != null) {
-                    if (esModificable(especieAmodificar.getTipo())) {
-                        modificarEspecie(especieAmodificar);
-                        System.out.println("<OK: Ser modificado correctamente >");
-                    } else {
-                        throw new ExcepcionPlanetas(8);
-                    }
+                    esModificable(especieAmodificar.getTipo());
+                    modificarEspecie(especieAmodificar, Integer.parseInt(datos_separados[2]));
+                    System.out.println("<OK: Ser modificado correctamente >");
+
                 } else {
                     throw new ExcepcionPlanetas(7);
                 }
@@ -93,6 +94,8 @@ public class Manager {
                 break;
 
         }
+
+   
     }
 
     public static Especie crearSer(String datos_separados[]) throws ExcepcionPlanetas {
@@ -210,6 +213,7 @@ public class Manager {
         listaTODOS = obtenerListadeTODOS();
         for (Especie especie : listaTODOS) {
             if (especie.getNombre().equalsIgnoreCase(nombre)) {
+
                 return especie;
             }
         }
@@ -247,35 +251,60 @@ public class Manager {
         }
     }
 
-    public static boolean esModificable(String tipo) {
+    public static void esModificable(String tipo) throws ExcepcionPlanetas {
+
         if (tipo.equalsIgnoreCase("Humano") || tipo.equalsIgnoreCase("Vulcaniano") || tipo.equalsIgnoreCase("Klingon")) {
-            return true;
+
+        } else {
+            throw new ExcepcionPlanetas(8);
         }
-        return false;
+
     }
 
     public static void modificarEspecie(Especie especie, int valor) throws ExcepcionPlanetas {
-       
-//ESTAS MODIFICANDO LA ESPECIE QUE SOLO PUEDE SER DE 3 TIPOS
-//Y ADEMÁS DEBES GRABARLA DESPUÉS
-//CUIDADO CON EL STATIC
-       
+
         switch (especie.getTipo()) {
             case "Humano":
-                for (Especie especie :  Vulcano.getListaCensados()) {
-                    
-                }
-                humano.setEdad(valor);
+                Humano especieHumana = (Humano) especie;
+                especieHumana.setEdad(valor);
+                String nombrePlaneta = especieHumana.getNombreplaneta();
+                Planeta planeta = elegirPlanetaIguala(nombrePlaneta);
+                Fichero.escribirFichero(nombrePlaneta, planeta.getListaCensados());
                 break;
-            case "Vulcano":
-                vulcaniano.setMeditacion(valor);
-     Fichero.escribirFichero("Vulcano", Vulcano.getListaCensados());
+            case "Vulcaniano":
+                Vulcaniano especieVulcaniana = (Vulcaniano) especie;
+                especieVulcaniana.setMeditacion(valor);
+                nombrePlaneta = especieVulcaniana.getNombreplaneta();
+                planeta = elegirPlanetaIguala(nombrePlaneta);
+                Fichero.escribirFichero("Vulcano", Vulcano.getListaCensados());
 
                 break;
-            case "Kronos":
-                klingon.setFuerza(valor);
+            case "Klingon":
+                Klingon especieKlingon = (Klingon) especie;
+                especieKlingon.setFuerza(valor);
+                nombrePlaneta = especieKlingon.getNombreplaneta();
+                planeta = elegirPlanetaIguala(nombrePlaneta);
+                Fichero.escribirFichero("Vulcano", Vulcano.getListaCensados());
                 break;
 
         }
+    }
+
+    public static Planeta elegirPlanetaIguala(String nombrePlaneta) {
+
+        if (nombrePlaneta.equalsIgnoreCase("Kronos")) {
+            return Kronos;
+        }
+        if (nombrePlaneta.equalsIgnoreCase("Vulcano")) {
+            return Vulcano;
+        }
+        if (nombrePlaneta.equalsIgnoreCase("Andoria")) {
+            return Andoria;
+        }
+        if (nombrePlaneta.equalsIgnoreCase("Nibiru")) {
+            return Nibiru;
+        }
+
+        return null;
     }
 }
