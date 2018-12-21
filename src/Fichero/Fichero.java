@@ -15,15 +15,14 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 
 /**
  *
  * @author CRISTIAN
  */
 public class Fichero {
-
+    
     static File VulcanoTXT;
     static File KronosTXT;
     static File NibiruTXT;
@@ -57,15 +56,15 @@ public class Fichero {
 
         FileReader fr = null;
         BufferedReader br = null;
+        
         try {
             fr = new FileReader(archivo);
             br = new BufferedReader(fr);
             String linea = "";
             Manager.crearPlanetas();
-            while ((linea = br.readLine()) != null) {
+            while ((linea = br.readLine())!= null && (Manager.existeX)){
                 String frase = linea.substring(0);
                 try {
-
                     Manager.RealizarAccionconFrase(frase);
                 } catch (ExcepcionPlanetas ex) {
                     System.out.println(ex.getMessage());

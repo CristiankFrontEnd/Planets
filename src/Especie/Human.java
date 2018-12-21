@@ -11,14 +11,14 @@ import Excepcion.ExcepcionPlanetas;
  *
  * @author CRISTIAN
  */
-public class Humano extends Especie {
+public class Human extends Especie {
 //ATRIBUTOS
     private int edad;
 
 //CONSTRUCTOR
-    public Humano(String nombreplaneta, String nombre, String tipo, int edad) throws ExcepcionPlanetas {
+    public Human(String nombreplaneta, String nombre, String tipo, int edad) throws ExcepcionPlanetas {
         super(nombreplaneta, nombre, tipo);
-        if (!(edad < 0) && !(edad > 130)) {
+        if (edad >= 0 && edad <= 130) {
             this.edad = edad;
         } else {
             throw new ExcepcionPlanetas(10);

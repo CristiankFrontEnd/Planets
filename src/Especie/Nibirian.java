@@ -9,12 +9,12 @@ package Especie;
  *
  * @author CRISTIAN
  */
-public class Nibiriano extends Especie{
+public class Nibirian extends Especie{
     
     
     private String vegetariano;
     
-    public Nibiriano(String nombreplaneta, String nombre, String tipo, String vegetariano) {
+    public Nibirian(String nombreplaneta, String nombre, String tipo, String vegetariano) {
         super(nombreplaneta, nombre, tipo);
         this.vegetariano=vegetariano;
     }

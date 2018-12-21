@@ -42,26 +42,17 @@ public abstract class Planeta {
         this.listaCensados = listaCensados;
     }
 
- 
 
-    public void comprobarExistencia(Especie especie, Planeta planet) throws ExcepcionPlanetas {
-
-        listaCensados = planet.getListaCensados();
-        if (listaCensados.contains(especie)) {
-            throw new ExcepcionPlanetas(6);
-
-        }
-    }
 
     public boolean compatibilidadEspeciePlaneta(Especie especie) throws ExcepcionPlanetas {
 
-        if (especie.getTipo().equalsIgnoreCase("vulcaniano") && (especie.getNombreplaneta().equalsIgnoreCase("Andoria"))) {
+        if (especie.getTipo().equalsIgnoreCase("vulcan") && (especie.getNombreplaneta().equalsIgnoreCase("Andoria"))) {
             throw new ExcepcionPlanetas(5);
-        } else if (especie.getTipo().equalsIgnoreCase("Andoriano") && (especie.getNombreplaneta().equalsIgnoreCase("Vulcano"))) {
+        } else if (especie.getTipo().equalsIgnoreCase("Andorian") && (especie.getNombreplaneta().equalsIgnoreCase("Vulcano"))) {
             throw new ExcepcionPlanetas(5);
         } else if (especie.getTipo().equalsIgnoreCase("Klingon") && (especie.getNombreplaneta().equalsIgnoreCase("Vulcano"))) {
             throw new ExcepcionPlanetas(5);
-        } else if (especie.getTipo().equalsIgnoreCase("Nibiriano") && (!especie.getNombreplaneta().equalsIgnoreCase("Nibiru"))) {
+        } else if (especie.getTipo().equalsIgnoreCase("Nibirian") && (!especie.getNombreplaneta().equalsIgnoreCase("Nibiru"))) {
             throw new ExcepcionPlanetas(5);
         }
         return true;

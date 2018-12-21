@@ -9,12 +9,12 @@ package Especie;
  *
  * @author CRISTIAN
  */
-public class Andoriano extends Especie {
+public class Andorian extends Especie {
 //ATRIBUTOS
     private String aenar;
 
 //CONSTRUCTOR
-    public Andoriano(String nombreplaneta, String nombre, String tipo, String aenar) {
+    public Andorian(String nombreplaneta, String nombre, String tipo, String aenar) {
         super(nombreplaneta, nombre, tipo);
         this.aenar = aenar;
     }

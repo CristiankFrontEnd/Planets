@@ -18,7 +18,7 @@ public class Klingon extends Especie {
 //CONSTRUCTOR
     public Klingon(String nombreplaneta, String nombre, String tipo, int fuerza) throws ExcepcionPlanetas {
         super(nombreplaneta, nombre, tipo);
-        if (!(fuerza < 50 && fuerza > 350)) {
+        if ((fuerza >= 50 && fuerza <= 350)) {
             this.fuerza = fuerza;
         } else {
             throw new ExcepcionPlanetas(12);

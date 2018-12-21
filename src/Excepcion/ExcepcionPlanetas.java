@@ -18,43 +18,46 @@ private int codigoError;
         String mensaje="";
         switch(codigoError){
             case 1:
-                mensaje="N.º de argumentos inválido";
+                mensaje="< ERROR 001: N.º de argumentos inválido >";
                 break;
             case 2:
-                  mensaje="Especie incorrecta";
+                  mensaje="< ERROR 002: Especie incorrecta >";
                 break;
             case 3:
-                mensaje="Planeta incorrecto";
+                mensaje="< ERROR 003: Planeta incorrecto >";
                 break;
             case 4:
-                  mensaje="Dato incorrecto";
+                  mensaje="< ERROR 004: Dato incorrecto >";
                 break;
             case 5:
                 mensaje="No se puede registrar ese ser en ese planeta";
                 break;
             case 6:
-                  mensaje="Ya existe un ser censado con ese nombre";
+                  mensaje="< ERROR 006: Ya existe un ser censado con ese nombre >";
                 break;
             case 7:
-                mensaje="No existe ningún ser con ese nombre";
+                mensaje="< ERROR 007: No existe ningún ser con ese nombre >";
                 break;
             case 8:
-                  mensaje="El ser no permite ser modificado";
+                  mensaje="< ERROR 008: El ser no permite ser modificado >";
                 break;
             case 9:
-                mensaje="Operación incorrecta";
+                mensaje="< ERROR 009: Operación incorrecta >";
                 break;
             case 10:
                   mensaje="Edad incorrecta";
                 break;
             case 11:
-                mensaje="Nivel de meditación incorrecto";
+                mensaje="< ERROR 011: Nivel de meditación incorrecto >";
                 break;
             case 12:
-                  mensaje="Valor de fuerza incorrecto";
+                  mensaje="< ERROR 012: Valor de fuerza incorrecto >";
                 break;
             case 13:
                   mensaje="Planeta completo (30 censados máximo)";
+                break;
+                 case 14:
+                  mensaje="< Nobody registered yet >";
                 break;
          
                 

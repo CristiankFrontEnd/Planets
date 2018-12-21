@@ -11,14 +11,14 @@ import Excepcion.ExcepcionPlanetas;
  *
  * @author CRISTIAN
  */
-public class Vulcaniano extends Especie {
+public class Vulcan extends Especie {
 //ATRIBUTOS 
     private int meditacion;
 
 //CONSTRUCTOR
-    public Vulcaniano(String nombreplaneta, String nombre, String tipo, int meditacion) throws ExcepcionPlanetas {
+    public Vulcan(String nombreplaneta, String nombre, String tipo, int meditacion) throws ExcepcionPlanetas {
         super(nombreplaneta, nombre, tipo);
-        if (!(meditacion < 0 && meditacion > 10)) {
+        if ((meditacion >= 0 && meditacion <= 10)) {
             this.meditacion = meditacion;
         } else {
             throw new ExcepcionPlanetas(11);
