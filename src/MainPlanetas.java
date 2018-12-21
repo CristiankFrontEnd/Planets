@@ -11,7 +11,7 @@ import java.io.IOException;
 public class MainPlanetas {
 
     public static void main(String[] args) {
-        File documento = new File("documentoPlanetas.txt");
+        File documento = new File("Proyecto_Excepciones_ejemplo_entrada.txt");
         try {
 
             Fichero.creacion_PlanetasTXT();

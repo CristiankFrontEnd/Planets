@@ -106,7 +106,6 @@ public class Manager {
 
     public static void comprobarOpcion(String letra) throws ExcepcionPlanetas {
         if (letra.equals("C") || letra.equals("B") || letra.equals("M") || letra.equals("L") || letra.equals("P") || letra.equals("X")) {
-
         } else {
             throw new ExcepcionPlanetas(9);
         }
